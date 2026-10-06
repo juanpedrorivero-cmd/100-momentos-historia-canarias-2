@@ -1,0 +1,900 @@
+<title>100 momentos de Historia de Canarias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Ibarra+Real+Nova:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<style>
+/* Cal y basalto: fondo blanco de cal, tinta de basalto y diez pigmentos que solo aparecen donde
+   nombran un bloque. Una única línea de izquierda a derecha; cada momento es una banderola
+   plantada en ella y se abre como pliego sobre el color de su bloque. Todo alineado a la izquierda. */
+@property --era { syntax: '<color>'; inherits: true; initial-value: #8C4A2B }
+
+:root {
+  --bg: #FBFBF9; --surface: #FFFFFF; --ink: #1D2327; --muted: #5C666D; --line: #D8DCD9;
+  --mesa: #E8EAE7; --paper: #FFFFFF; --paper-line: #C4CACD; --paper-muted: #6A7379; --shadow: rgba(29, 35, 39, .22);
+  /* picón, drago, atlántico, ocre, cochinilla, platanera, plomo, añil, malva, basalto */
+  --e1: #8C4A2B; --e2: #9B1B30; --e3: #17607A; --e4: #86610E; --e5: #B0245C;
+  --e6: #3F7A35; --e7: #4A535C; --e8: #2B55A6; --e9: #6D4BA3; --e10: #23292E;
+  --on-era: #FFFFFF; --tint: 6%;
+  --era: var(--e1);
+  --f-display: 'Ibarra Real Nova', 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --f-text: Archivo, 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --gutter: clamp(16px, 4vw, 48px);
+  transition: --era .7s ease;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15191C; --surface: #1E2428; --ink: #ECEEEA; --muted: #9AA3A8; --line: #323B41;
+    --mesa: #0D1012; --paper: #FFFFFF; --paper-line: #C4CACD; --paper-muted: #6A7379; --shadow: rgba(0, 0, 0, .6);
+    --e1: #D99B72; --e2: #EA7584; --e3: #63B7CE; --e4: #D9B454; --e5: #EF79A8;
+    --e6: #8FCB81; --e7: #A9B3BC; --e8: #84ABF0; --e9: #BBA1EA; --e10: #D3D9DD;
+    --on-era: #15191C; --tint: 9%;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15191C; --surface: #1E2428; --ink: #ECEEEA; --muted: #9AA3A8; --line: #323B41;
+  --mesa: #0D1012; --paper: #FFFFFF; --paper-line: #C4CACD; --paper-muted: #6A7379; --shadow: rgba(0, 0, 0, .6);
+  --e1: #D99B72; --e2: #EA7584; --e3: #63B7CE; --e4: #D9B454; --e5: #EF79A8;
+  --e6: #8FCB81; --e7: #A9B3BC; --e8: #84ABF0; --e9: #BBA1EA; --e10: #D3D9DD;
+  --on-era: #15191C; --tint: 9%;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 4rem }
+[hidden] { display: none !important }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.5 var(--f-text); -webkit-font-smoothing: antialiased }
+html.sheet-open, html.sheet-open body { overflow: hidden }
+a { color: inherit }
+button { font: inherit; color: inherit }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap }
+.skip { position: absolute; left: var(--gutter); top: -4rem; z-index: 60; background: var(--ink); color: var(--bg); padding: .5rem .8rem; border-radius: 4px }
+.skip:focus { top: .5rem }
+.e1 { --c: var(--e1) } .e2 { --c: var(--e2) } .e3 { --c: var(--e3) } .e4 { --c: var(--e4) } .e5 { --c: var(--e5) }
+.e6 { --c: var(--e6) } .e7 { --c: var(--e7) } .e8 { --c: var(--e8) } .e9 { --c: var(--e9) } .e10 { --c: var(--e10) }
+
+/* ── barra ── */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; align-items: center; gap: 1.5rem;
+  padding: .5rem var(--gutter); background: var(--bg); border-bottom: 2px solid var(--era);
+}
+.brand { font: 500 1.25rem/1 var(--f-display); text-decoration: none; white-space: nowrap }
+.tnav { display: flex; gap: 1.25rem; font-size: .9rem }
+.tnav a { text-decoration: none; color: var(--muted) }
+.tnav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: .25em }
+.search { margin-left: auto; position: relative; flex: 0 1 18rem; min-width: 0 }
+.search svg { position: absolute; left: .7rem; top: 50%; translate: 0 -50%; width: .95rem; height: .95rem; color: var(--muted); pointer-events: none }
+.search input {
+  width: 100%; font: inherit; font-size: .9rem; padding: .42rem .8rem .42rem 2.1rem; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 4px; background: var(--surface);
+}
+.search input::placeholder { color: var(--muted) }
+@media (max-width: 700px) { .tnav { display: none } }
+
+/* ── portada ── */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1rem clamp(1.5rem, 5vw, 5rem); align-items: center;
+  padding: clamp(1.25rem, 2.6vw, 2rem) var(--gutter) clamp(1.1rem, 2.2vw, 1.6rem);
+}
+h1 { margin: 0; max-width: 13em; font: 400 clamp(2.3rem, 4.9vw, 3.9rem)/1 var(--f-display); letter-spacing: -.01em; text-wrap: balance }
+.lede { max-width: 38rem; margin: .9rem 0 0; font: 400 1.22rem/1.4 var(--f-display); text-wrap: pretty }
+.doclinks { max-width: 38rem; margin: .7rem 0 0; font-size: .92rem; color: var(--muted) }
+.doclinks a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--muted); text-underline-offset: .22em }
+.doclinks a:hover { text-decoration-color: var(--ink) }
+.isles { margin: 0; justify-self: end; width: 100%; max-width: 30rem }
+.isles svg { display: block; width: 100%; height: auto; overflow: visible }
+.isles path { fill: var(--ink) }
+.isles text { font: italic 400 13px var(--f-display); fill: var(--muted) }
+@media (max-width: 760px) { .hero { grid-template-columns: minmax(0, 1fr) } .isles { justify-self: start; max-width: 17rem; order: -1 } .lede { font-size: 1.1rem } }
+
+/* ── regla de bloques ── */
+.rrow { display: flex; align-items: center; gap: .5rem; margin: 0 var(--gutter) .9rem }
+.ribbon { position: relative; flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 2px }
+.rb {
+  appearance: none; border: 0; min-width: 0; min-height: 3.4rem; cursor: pointer; text-align: left; padding: .4rem .55rem .45rem;
+  background: var(--c); color: var(--on-era); opacity: .9; transition: opacity .2s;
+}
+.rb:hover, .rb[aria-current="true"] { opacity: 1 }
+.rb .r { display: block; font: 500 1.15rem/1 var(--f-display) }
+.rb .s { display: block; margin-top: .2rem; font-size: .72rem; line-height: 1.15; overflow-wrap: anywhere }
+.win { position: absolute; left: 0; bottom: -7px; width: 8%; height: 3px; background: var(--ink); pointer-events: none; will-change: transform }
+.arrow {
+  appearance: none; cursor: pointer; flex: none; width: 2.2rem; height: 3.4rem; display: grid; place-items: center; padding: 0;
+  border: 1px solid var(--line); border-radius: 4px; background: var(--surface); font-size: 1.2rem; line-height: 1;
+}
+.arrow:hover { border-color: var(--ink) }
+@media (max-width: 900px) { .rb { text-align: center; padding: .5rem .1rem; min-height: 0 } .rb .s { display: none } .arrow { height: 2.2rem } }
+@media (max-width: 560px) { .rrow .arrow { display: none } .rb { padding: .55rem 0 } .rb .r { font-size: .95rem } }
+
+/* ── línea temporal ── */
+.track { overflow-x: auto; overflow-y: hidden; cursor: grab; scrollbar-width: thin; scrollbar-color: var(--line) transparent; outline-offset: -3px }
+.track.drag { cursor: grabbing; user-select: none }
+.track.drag a { pointer-events: none }
+.rail { --up: 13.5rem; --dn: 13.5rem; position: relative; display: flex; width: max-content; padding: 0 var(--gutter) .9rem }
+.era { flex: none; position: relative; border-top: 5px solid var(--c); background: color-mix(in oklab, var(--c) var(--tint), var(--bg)) }
+.era-head {
+  position: sticky; left: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .75rem;
+  width: max-content; max-width: min(90vw, 50rem); padding: .7rem 1.1rem 0;
+}
+.era-head .r { font: 500 1.9rem/1 var(--f-display); color: var(--c) }
+.era-head h2 { margin: 0; font: 500 1.5rem/1.15 var(--f-display) }
+.era-head .w { font: italic 400 1.15rem/1.2 var(--f-display); color: var(--muted) }
+.ms { position: relative; display: flex; height: calc(var(--up) + var(--dn)); margin: 0; padding: 0 10.5rem 0 1.2rem; list-style: none }
+.ms::before { content: ""; position: absolute; left: 0; right: 0; top: var(--up); height: 2px; margin-top: -1px; background: var(--c) }
+/* cada banderola invade las columnas vecinas: solo ella recibe el puntero, no su columna */
+.m { flex: none; position: relative; width: 8.75rem; pointer-events: none; transition: opacity .25s }
+.m .card { pointer-events: auto }
+/* la banderola: el borde izquierdo es el mástil y llega hasta la línea */
+.card {
+  position: absolute; left: 50%; width: 14.6rem; margin-left: -1px; display: flex; flex-direction: column; gap: .15rem;
+  padding: .45rem .8rem .5rem .7rem; border-left: 2px solid var(--c); text-decoration: none;
+  transition: background-color .18s, color .18s;
+}
+.m.up .card { bottom: var(--dn); padding-bottom: 1.7rem }
+.m.dn .card { top: var(--up); padding-top: 1.7rem }
+a.card:hover, a.card:focus-visible { background: var(--c); color: var(--on-era) }
+.num { width: max-content; font: 400 2.3rem/1 var(--f-display); color: var(--c) }
+.tt { font: 500 1.12rem/1.2 var(--f-display); text-wrap: balance }
+.by { margin-top: .1rem; font-size: .8rem; line-height: 1.25; color: var(--muted) }
+.by.ed { font-style: italic }
+a.card:hover .num, a.card:hover .by, a.card:focus-visible .num, a.card:focus-visible .by { color: inherit }
+.dot { position: absolute; left: 50%; top: var(--up); width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px; border-radius: 50%; background: var(--c) }
+/* momento aún sin aportación: conserva su sitio, en hueco y sin enlace */
+.m.pend .card { border-left-style: dashed; cursor: default }
+.m.pend .dot { background: var(--bg); border: 2px solid var(--c) }
+.m.pend .num { color: transparent; -webkit-text-stroke: 1px var(--c) }
+.m.pend .tt { font-weight: 400; color: var(--muted) }
+.rail.focus .m { opacity: .2 }
+.rail.focus .m.on { opacity: 1 }
+.rail.focus .m.on .dot { outline: 2px solid var(--ink); outline-offset: 3px }
+.thread { position: absolute; height: 3px; background: var(--ink); pointer-events: none; transform-origin: left; animation: draw .7s cubic-bezier(.2, .8, .2, 1) both }
+@keyframes draw { from { transform: scaleX(0) } }
+.m.pulse .card { animation: pulse 1s ease }
+@keyframes pulse { 25% { background: color-mix(in oklab, var(--c) 22%, var(--bg)) } }
+
+/* ── secciones ── */
+.sec { padding: clamp(2.25rem, 5vw, 3.75rem) var(--gutter) 0 }
+.sec > h2 { margin: 0 0 .45rem; font: 400 clamp(1.8rem, 3.3vw, 2.5rem)/1.05 var(--f-display); text-wrap: balance }
+.sub { max-width: 40rem; margin: 0 0 1.2rem; color: var(--muted); text-wrap: pretty }
+.hilos { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .5rem 1.25rem; align-items: baseline; padding: .9rem var(--gutter) 0 }
+.hilos h2 { margin: 0; font: 500 1.3rem/1.2 var(--f-display) }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem }
+.hilos .finfo { grid-column: 1 / -1 }
+@media (max-width: 760px) { .hilos { grid-template-columns: minmax(0, 1fr) } }
+.chip {
+  appearance: none; cursor: pointer; font: 500 .84rem/1 var(--f-text); padding: .45rem .7rem;
+  border: 1px solid var(--line); border-radius: 4px; background: var(--surface); transition: background-color .2s, border-color .2s;
+}
+.chip:hover { border-color: var(--ink) }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg) }
+.finfo { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; min-height: 2.2rem; margin: 0; font-size: .9rem; color: var(--muted) }
+.finfo b { color: var(--ink); font-weight: 600 }
+.finfo button { appearance: none; cursor: pointer; border: 1px solid var(--line); background: var(--surface); border-radius: 4px; padding: .25rem .65rem; font-size: .82rem }
+.finfo button:hover { border-color: var(--ink) }
+/* la matriz va centrada: la columna de rótulos se compensa con el mismo hueco a la derecha */
+.cen { text-align: center }
+.cen .sub { margin-inline: auto }
+.mx { --lab: 11rem; display: grid; gap: 3px; max-width: 58rem; margin: 0 auto; text-align: left }
+.mx-row { display: grid; grid-template-columns: var(--lab) repeat(10, minmax(0, 1fr)); gap: 3px; align-items: center; padding-right: calc(var(--lab) + 3px) }
+.lab { display: flex; align-items: baseline; gap: .45rem; min-width: 0; font-size: .82rem; line-height: 1.2; color: var(--muted) }
+.lab b { flex: none; min-width: 1.9rem; font: 500 1.1rem/1 var(--f-display); color: var(--c) }
+.cell {
+  aspect-ratio: 1; display: grid; place-items: center; text-decoration: none; font: 500 .82rem/1 var(--f-text);
+  font-variant-numeric: tabular-nums; background: var(--c); color: var(--on-era); transition: scale .15s, opacity .25s;
+}
+.cell.pend { background: transparent; color: var(--c); border: 1px dashed var(--c) }
+a.cell:hover, a.cell:focus-visible { scale: 1.12 }
+.mx.focus .cell:not(.on) { opacity: .18 }
+.mx-cap { display: grid; gap: .25rem; justify-items: center; align-content: start; min-height: 10.5rem; max-width: 36rem; margin: 1.4rem auto 0; font-size: .95rem; color: var(--muted) }
+.mx-cap .n { font: 400 4.2rem/.9 var(--f-display); color: var(--c) }
+.mx-cap .t { font: 500 1.4rem/1.2 var(--f-display); color: var(--ink); text-wrap: balance }
+.mx-cap .a { font-size: .9rem }
+@media (max-width: 760px) { .mx { --lab: 2rem } .lab span { display: none } .cell { font-size: .68rem } }
+.au { columns: 19rem; column-gap: 2.25rem; margin: 0; padding: 0; list-style: none }
+.au li { break-inside: avoid }
+.au a { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); column-gap: .5rem; padding: .5rem 0; border-top: 1px solid var(--line); text-decoration: none }
+.au a:hover .a { text-decoration: underline; text-decoration-color: var(--c); text-underline-offset: .2em }
+.au .n { grid-row: span 2; font: 400 1.5rem/1.05 var(--f-display); color: var(--c) }
+.au .a { font: 500 1.1rem/1.25 var(--f-display) }
+.au .t { font-size: .84rem; line-height: 1.3; color: var(--muted) }
+.au-ed { max-width: 46rem; margin: 1.4rem 0 0; font-size: .9rem; line-height: 1.5; color: var(--muted) }
+.au-ed a { color: var(--ink); text-underline-offset: .2em; text-decoration-color: var(--muted) }
+/* Sobre esta obra: como la primera página de un artículo */
+.obra { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 1.5rem clamp(2rem, 5vw, 5rem); align-items: start; max-width: 76rem; margin-top: 1rem }
+.obra h3 { margin: 1.5rem 0 .35rem; font: 600 .86rem/1.3 var(--f-text); color: var(--muted) }
+.obra h3:first-child { margin-top: 0 }
+.abs { margin: 0; max-width: 41rem; font: 400 1.2rem/1.45 var(--f-display); text-wrap: pretty }
+.kw { margin: 0; max-width: 41rem; font-size: .95rem }
+.cite { margin: 0; max-width: 41rem; padding-left: 1.6rem; text-indent: -1.6rem; font: 400 1.1rem/1.4 var(--f-display); overflow-wrap: anywhere }   /* sangría francesa, como en una bibliografía */
+.copy { appearance: none; cursor: pointer; margin-top: .65rem; padding: .42rem .7rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); font: 500 .82rem/1 var(--f-text) }
+.copy:hover { border-color: var(--ink) }
+.mini { margin: .7rem 0 0; max-width: 41rem; font-size: .86rem; color: var(--muted) }
+.ficha { margin: 0; border-top: 2px solid var(--ink) }
+.ficha div { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--line) }
+.ficha dt { font-size: .84rem; line-height: 1.5; color: var(--muted) }
+.ficha dd { margin: 0; font: 500 1.1rem/1.3 var(--f-display) }
+.ficha a { text-decoration-color: var(--muted); text-underline-offset: .2em }
+@media (max-width: 860px) { .obra { grid-template-columns: minmax(0, 1fr) } }
+@media (max-width: 480px) { .ficha div { grid-template-columns: minmax(0, 1fr); gap: .1rem } }
+footer {
+  display: grid; gap: .55rem; margin-top: clamp(2.5rem, 6vw, 4rem); padding: 1.4rem var(--gutter) 2.5rem;
+  border-top: 1px solid var(--line); font-size: .86rem; line-height: 1.45; color: var(--muted);
+}
+footer p { margin: 0; max-width: 58rem }
+footer b { font-weight: 500; color: var(--ink) }
+footer a { text-underline-offset: .2em }
+
+/* ── pliego: el momento abierto ── */
+.sheet {
+  position: fixed; inset: 0; z-index: 50; display: grid; grid-template-columns: minmax(17rem, 23rem) minmax(0, 1fr);
+  overflow: hidden; background: var(--mesa); padding-top: env(safe-area-inset-top, 0px);
+}
+.sheet.enter { animation: sheet-in .35s ease both }
+@keyframes sheet-in { from { opacity: 0; transform: translateY(12px) } }
+.sh-aside {
+  display: flex; flex-direction: column; min-height: 0; overflow-y: auto; padding: 1.1rem 1.6rem 1.4rem;
+  background: var(--c); color: var(--on-era); transition: background-color .5s; view-transition-name: aside;
+}
+.sh-aside :focus-visible { outline-color: currentColor }
+.sh-close {
+  appearance: none; align-self: flex-start; cursor: pointer; padding: .45rem .8rem; border-radius: 4px; background: transparent;
+  border: 1px solid color-mix(in oklab, currentColor 50%, transparent); font: 500 .86rem/1 var(--f-text);
+}
+.sh-close:hover { background: color-mix(in oklab, currentColor 16%, transparent) }
+.sh-era { margin: 1.6rem 0 0; font-size: .88rem; line-height: 1.35 }
+.sh-num { width: max-content; margin: .3rem 0 0; font: 400 clamp(5.2rem, 10vw, 8.6rem)/.84 var(--f-display); view-transition-name: mnum }
+.sh-title { margin: .7rem 0 0; font: 500 clamp(1.55rem, 2.2vw, 2rem)/1.12 var(--f-display); text-wrap: balance }
+.sh-by { margin: .5rem 0 0; font-size: .95rem; line-height: 1.35 }
+.sh-hilos { display: grid; gap: .3rem; margin-top: 1rem; font-size: .86rem; line-height: 1.3 }
+.sh-hilos a { text-underline-offset: .2em; text-decoration-color: color-mix(in oklab, currentColor 55%, transparent) }
+.sh-hilos a:hover { text-decoration-color: currentColor }
+.sh-cite { margin-top: 1.1rem; font-size: .82rem; line-height: 1.4 }
+.sh-cite summary {
+  width: max-content; max-width: 100%; cursor: pointer; list-style: none; font-size: .86rem;
+  text-decoration: underline; text-underline-offset: .2em; text-decoration-color: color-mix(in oklab, currentColor 55%, transparent);
+}
+.sh-cite summary::-webkit-details-marker { display: none }
+.sh-cite summary::after { content: " +" }
+.sh-cite[open] summary::after { content: " −" }
+.sh-cite summary:hover { text-decoration-color: currentColor }
+.sh-cite p { margin: .45rem 0 0; overflow-wrap: anywhere }
+.sh-cite .copy { margin-top: .55rem; color: inherit; background: transparent; border-color: color-mix(in oklab, currentColor 50%, transparent) }
+.sh-cite .copy:hover { background: color-mix(in oklab, currentColor 16%, transparent); border-color: currentColor }
+.sh-nav { display: grid; gap: .6rem; margin-top: auto; padding-top: 1.6rem }
+.sh-nav a { display: block; padding-top: .6rem; text-decoration: none; border-top: 1px solid color-mix(in oklab, currentColor 35%, transparent) }
+.sh-nav small { display: block; font-size: .78rem; opacity: .85 }
+.sh-nav span { font: 500 1.08rem/1.2 var(--f-display) }
+.sh-nav a:hover span { text-decoration: underline; text-underline-offset: .2em }
+.sh-main { display: flex; flex-direction: column; min-width: 0; min-height: 0 }
+.sh-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .5rem; padding: .5rem clamp(.75rem, 2vw, 1.5rem);
+  background: var(--surface); border-bottom: 1px solid var(--line); font-size: .86rem;
+}
+.sh-bar .info { margin-right: auto; color: var(--muted); min-width: 0 }
+.tb {
+  appearance: none; cursor: pointer; min-width: 2.1rem; height: 2.1rem; padding: 0 .55rem; display: inline-grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 4px; background: var(--bg); font-size: 1rem; line-height: 1; text-decoration: none;
+}
+.tb:hover { border-color: var(--ink) }
+.tb.txt { font-size: .84rem; padding: 0 .7rem }
+.tgl { display: inline-flex; align-items: center; gap: .4rem; height: 2.1rem; padding: 0 .6rem; cursor: pointer; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); font-size: .84rem }
+.tgl input { accent-color: var(--ink); margin: 0 }
+.sh-doc { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: clamp(.75rem, 2.4vw, 2rem) clamp(.75rem, 2.4vw, 2rem) 3rem }
+/* el fragmento se lee como una sola hoja; la línea discontinua marca dónde cambiaba de página */
+.stack { margin: 0 auto; background: var(--paper); box-shadow: 0 1px 2px var(--shadow), 0 18px 34px -22px var(--shadow) }
+.pg { position: relative; margin: 0 }
+.pg.brk { margin-top: .45rem; padding-top: .6rem; border-top: 1px dashed var(--paper-line) }   /* aire fijo a ambos lados del corte */
+.pg.gone { display: none }
+.pg .clip { overflow: hidden }
+.pg:not(.ready) .clip { background: linear-gradient(100deg, var(--paper) 40%, #ECEFEF 50%, var(--paper) 60%) 0 0 / 300% 100%; animation: shimmer 1.3s linear infinite }
+.pg img { display: block; max-width: none; opacity: 0; transition: opacity .3s }
+.pg.ready img { opacity: 1 }
+.pg figcaption { position: absolute; z-index: 1; right: .7rem; top: -.62em; padding: 0 .45rem; background: var(--paper); font-size: .7rem; line-height: 1.2; white-space: nowrap; color: var(--paper-muted) }
+.stack.full { background: none; box-shadow: none }
+.stack.full .pg { margin: 0 0 1.25rem; padding: 0; border: 0; background: var(--paper); box-shadow: 0 1px 2px var(--shadow), 0 18px 34px -22px var(--shadow) }
+.stack.full .pg figcaption { top: .45rem }
+@keyframes shimmer { to { background-position: -150% 0 } }
+.more { display: flex; justify-content: center; margin: 0 0 1.25rem }
+@media (max-width: 860px) {
+  .sheet { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) }
+  .sh-aside { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 0 .9rem; padding: .7rem 1rem .8rem; max-height: 46vh }
+  .sh-close { grid-column: 1 / -1; justify-self: start; margin-bottom: .5rem }
+  .sh-era { grid-column: 1 / -1; margin: 0 0 .2rem; font-size: .8rem }
+  .sh-num { grid-row: span 2; margin: 0; font-size: 3.6rem; line-height: .9 }
+  .sh-title { margin: 0; font-size: 1.35rem }
+  .sh-by { margin: .15rem 0 0; font-size: .85rem }
+  .sh-hilos { grid-column: 1 / -1; margin-top: .5rem }
+  .sh-nav { display: none }
+  .sh-cite { grid-column: 1 / -1; margin-top: .45rem }
+}
+@media (min-width: 861px) { .tb.mob { display: none } }
+
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .32s }
+::view-transition-group(mnum) { animation-duration: .5s; animation-timing-function: cubic-bezier(.2, .8, .2, 1) }
+::view-transition-new(aside):only-child { animation: aside-in .5s cubic-bezier(.2, .8, .2, 1) both }
+::view-transition-old(aside):only-child { animation: aside-out .3s ease both }
+@keyframes aside-in { from { transform: translateX(-100%) } }
+@keyframes aside-out { to { transform: translateX(-100%) } }
+@media (max-width: 860px) {
+  @keyframes aside-in { from { transform: translateY(-100%) } }
+  @keyframes aside-out { to { transform: translateY(-100%) } }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important }
+  :root { transition: none }
+}
+</style>
+<!--CUERPO-->
+<script type="application/ld+json">%%JSONLD%%</script>
+<a class="skip" href="#matriz">Saltar la línea temporal</a>
+<div id="app">
+  <header class="top">
+    <a class="brand" href="#inicio">100 momentos</a>
+    <nav class="tnav" aria-label="Secciones"><a href="#linea">Línea</a><a href="#hilos">Hilos</a><a href="#matriz">Matriz</a><a href="#autoria">Autoría</a><a href="#obra">Sobre la obra</a></nav>
+    <label class="search">
+      <span class="vh">Buscar por título, autoría o número</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="M10.6 10.6 14 14"/></svg>
+      <input id="q" type="search" placeholder="Buscar título o autor" autocomplete="off" spellcheck="false">
+    </label>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div>
+        <h1>100 momentos de Historia de Canarias</h1>
+        <p class="lede">%%ENTRADA%%</p>
+        <p class="doclinks">El documento se abre con una <a href="#introduccion">introducción</a> y se cierra con la <a href="#conclusion">conclusión general del profesor</a>. Resumen, ficha y cita en <a href="#obra">Sobre esta obra</a>.</p>
+      </div>
+      <figure class="isles">
+        <svg viewBox="-16 6 458 196" role="img" aria-label="Mapa del archipiélago canario con sus ocho islas">
+          <path d="M27.9 164.8L29.4 165.0L31.0 166.0L32.3 167.2L32.6 168.5L32.0 170.2L28.5 175.8L28.5 176.3L28.5 177.0L28.5 177.6L28.2 178.1L27.9 178.5L27.2 178.7L26.9 179.0L26.6 179.5L26.3 180.0L25.6 180.7L25.0 181.4L24.7 182.2L24.7 184.6L23.7 185.7L22.5 185.7L20.6 184.7L19.3 183.2L18.4 181.9L17.4 180.8L10.7 180.0L9.2 179.2L7.9 177.8L7.3 174.3L9.8 173.1L13.3 173.4L17.1 174.4L18.4 173.4L21.8 170.0L22.5 169.2L22.5 168.2L22.8 167.7L24.7 166.8L27.9 164.8ZM43.4 68.2L43.4 70.1L44.0 72.4L44.7 74.1L46.6 75.1L46.6 77.0L44.0 80.0L42.8 82.2L43.4 84.3L44.3 87.8L43.7 89.7L43.1 92.4L41.2 95.1L39.3 99.1L37.7 102.5L37.1 104.5L36.4 104.5L35.8 103.5L33.9 102.5L33.2 100.6L32.6 95.6L31.7 94.4L31.0 92.9L29.1 90.3L28.5 88.1L25.3 82.9L25.0 80.4L24.4 78.7L24.1 77.2L22.8 76.2L21.8 75.0L22.2 71.9L24.7 68.7L27.5 66.0L29.8 64.5L31.7 65.7L33.9 65.9L36.1 66.5L39.6 65.0L41.2 65.9L42.8 67.0L43.4 68.2ZM82.7 129.3L87.1 128.2L91.3 129.5L95.1 131.9L99.8 135.4L100.8 137.6L101.4 140.0L100.1 141.8L98.2 143.0L95.7 145.6L93.8 146.9L91.9 147.4L89.7 148.1L87.5 147.6L82.7 144.7L79.8 140.2L79.8 136.6L80.2 132.9L82.7 129.3ZM160.4 135.1L159.4 136.8L157.8 138.5L152.1 144.2L150.8 146.4L149.9 147.6L147.0 146.9L142.3 148.8L140.1 149.6L138.5 150.3L137.2 149.9L136.3 148.6L135.9 147.8L136.3 146.6L135.3 146.2L134.7 145.6L134.4 144.7L134.0 142.9L134.0 142.2L132.8 140.7L129.3 137.3L128.7 135.6L128.0 133.4L126.8 131.9L125.2 130.4L124.5 129.2L123.9 124.6L123.6 123.8L122.3 121.7L121.1 119.6L118.2 116.5L117.6 114.5L119.5 113.1L124.2 110.9L126.1 111.6L128.0 113.1L129.3 113.5L130.2 113.3L132.8 112.6L134.7 111.6L137.5 110.8L139.8 109.9L141.3 110.4L144.8 110.1L146.7 109.9L148.3 108.4L150.5 108.2L151.5 107.7L153.4 107.6L155.3 106.2L159.4 102.5L161.0 101.0L161.6 100.1L161.9 98.6L162.3 97.9L163.8 97.1L164.5 96.6L166.1 95.7L168.0 95.4L169.5 94.7L170.2 92.9L171.8 93.4L180.3 93.5L185.7 91.7L187.6 92.9L187.0 95.6L184.1 97.6L177.8 101.1L176.2 103.8L174.3 105.7L172.1 108.2L169.5 110.3L168.0 110.9L166.7 112.0L165.7 113.8L165.7 115.8L166.4 117.5L166.7 118.5L166.4 119.6L165.4 120.2L164.8 121.2L164.2 123.4L161.3 128.8L160.4 133.2L160.4 135.1ZM251.6 146.9L252.3 147.6L253.9 148.4L254.2 149.1L253.9 150.6L253.2 152.5L252.9 154.2L254.2 155.9L254.2 156.5L253.2 157.0L252.6 157.9L251.6 160.1L252.6 161.4L252.9 163.3L252.9 164.8L251.3 165.5L250.4 166.2L247.5 169.7L246.3 170.9L239.9 172.9L239.0 173.4L238.6 173.4L236.4 176.1L235.2 176.6L234.2 176.1L233.6 175.4L232.6 174.9L228.8 174.8L227.2 174.3L225.7 173.6L220.9 169.5L220.3 168.5L219.9 167.8L218.0 166.8L217.4 166.2L217.1 165.6L214.2 159.9L213.9 157.9L214.2 155.9L213.9 154.7L213.9 153.2L213.9 151.6L214.2 150.5L215.2 149.4L218.7 147.6L220.3 146.4L222.2 144.4L223.8 141.8L223.4 139.5L224.4 138.5L224.7 136.8L224.4 134.7L224.1 133.2L225.0 133.2L226.0 133.2L226.9 133.4L227.6 133.9L228.8 133.6L233.6 135.3L240.2 135.3L245.6 136.6L247.8 135.9L247.5 132.6L250.1 132.0L250.4 132.2L251.0 133.6L251.0 134.2L250.1 134.6L249.4 135.9L249.7 138.6L250.1 142.5L250.4 143.2L250.7 144.4L251.0 145.7L251.6 146.9ZM376.5 76.5L380.0 75.0L383.2 74.6L386.0 75.6L388.6 78.5L389.5 81.9L389.8 86.3L389.2 94.9L388.6 96.9L387.3 100.8L386.7 102.2L386.7 105.4L386.7 106.5L387.0 107.2L387.9 108.6L387.9 109.3L387.6 110.3L386.0 111.8L385.7 112.3L385.7 113.3L385.4 114.1L385.1 115.2L383.8 117.2L382.9 118.9L381.9 122.3L380.0 125.6L377.2 127.1L367.7 128.7L363.9 130.0L360.7 132.0L357.2 132.9L355.6 133.9L352.8 137.1L350.2 140.3L347.7 143.2L343.9 144.9L341.7 144.9L338.2 143.4L336.6 142.9L330.6 143.2L329.6 142.9L329.9 142.5L330.3 141.3L330.6 140.2L330.6 139.8L331.2 139.6L334.1 140.2L336.0 140.0L339.1 138.8L344.2 136.6L350.5 132.4L353.1 129.9L354.3 128.2L355.3 126.5L355.9 124.6L356.6 119.6L357.2 117.9L359.1 114.8L361.3 107.7L362.0 106.5L362.9 105.7L365.4 101.3L367.7 96.4L371.1 91.2L372.1 86.3L373.4 83.2L373.7 79.7L374.3 78.3L375.3 77.3L376.5 76.5ZM419.6 26.0L421.2 25.7L422.8 26.7L425.3 29.0L424.7 31.1L424.4 32.8L423.8 34.1L421.9 35.3L421.5 36.8L421.9 38.2L422.2 39.5L422.5 41.4L422.2 42.0L421.5 43.4L421.2 44.2L421.2 45.1L421.2 46.8L421.2 47.6L420.0 50.0L417.4 52.2L414.6 53.9L410.4 54.9L409.5 55.7L408.9 56.7L407.6 57.2L406.3 57.2L404.4 57.7L402.8 57.9L399.7 58.6L397.5 60.3L395.6 63.0L394.0 66.0L393.6 66.0L392.7 64.7L390.8 64.2L386.7 64.0L386.0 63.5L385.4 62.3L385.1 61.1L385.4 60.6L386.4 60.3L387.0 59.4L387.9 57.9L388.3 56.2L388.6 51.3L388.9 50.0L392.1 45.3L393.6 43.6L394.6 42.6L396.2 41.9L397.8 41.5L400.0 41.4L401.6 40.9L404.4 38.3L406.3 37.3L407.9 36.8L409.2 36.6L413.6 36.6L414.9 36.1L415.8 35.0L417.1 32.6L418.1 29.2L418.7 27.5L419.6 26.0ZM419.3 21.6L420.3 23.3L419.0 25.7L416.8 27.4L414.6 27.0L414.6 26.3L415.8 24.8L416.8 22.6L417.4 21.1L419.3 21.6Z"/>
+          <text x="20" y="200" text-anchor="middle">El Hierro</text>
+          <text x="34" y="57" text-anchor="middle">La Palma</text>
+          <text x="90" y="163" text-anchor="middle">La Gomera</text>
+          <text x="153" y="166" text-anchor="middle">Tenerife</text>
+          <text x="234" y="192" text-anchor="middle">Gran Canaria</text>
+          <text x="360" y="160" text-anchor="middle">Fuerteventura</text>
+          <text x="378" y="50" text-anchor="end">Lanzarote</text>
+          <text x="408" y="21" text-anchor="end">La Graciosa</text>
+        </svg>
+      </figure>
+    </section>
+
+    <div class="rrow" id="linea">
+      <button class="arrow" id="prev" type="button" aria-label="Retroceder en la línea">‹</button>
+      <nav class="ribbon" id="ribbon" aria-label="Bloques de la línea temporal">
+%%CINTA%%
+        <span class="win" id="win"></span>
+      </nav>
+      <button class="arrow" id="next" type="button" aria-label="Avanzar en la línea">›</button>
+    </div>
+
+    <div class="track" id="track" tabindex="0" role="region" aria-label="Línea temporal de los cien momentos">
+      <div class="rail" id="rail">
+%%LINEA%%
+      </div>
+    </div>
+
+    <section class="hilos" id="hilos" aria-labelledby="hl">
+      <h2 id="hl">Hilos de larga duración</h2>
+      <div class="chips" role="group" aria-labelledby="hl">
+%%HILOS%%
+      </div>
+      <p class="finfo" id="finfo" aria-live="polite"></p>
+    </section>
+
+    <section class="sec cen" id="matriz">
+      <h2>La matriz de los cien</h2>
+      <p class="sub">Diez bloques en filas y diez momentos en cada uno.</p>
+      <div class="mx" id="mx">
+%%MATRIZ%%
+      </div>
+      <p class="mx-cap" id="mxcap" aria-live="polite"></p>
+    </section>
+
+    <section class="sec" id="autoria">
+      <h2>Autoría</h2>
+      <p class="sub">Alumnado del %%TITULACION%% de la %%INSTITUCION%%. Cada aportación conserva la autoría de quien la investigó.</p>
+      <ol class="au">
+%%AUTORIA%%
+      </ol>
+%%PROPIAS%%
+    </section>
+
+    <section class="sec" id="obra">
+      <h2>Sobre esta obra</h2>
+      <div class="obra">
+        <div>
+          <h3>Resumen</h3>
+          <p class="abs">%%RESUMEN%%</p>
+          <h3>Palabras clave</h3>
+          <p class="kw">%%PALABRAS%%</p>
+          <h3>Cita sugerida</h3>
+          <p class="cite" id="cite-obra">%%COORD_CITA%% (coord.) (%%ANIO%%). <i>%%TITULO%%</i>. Obra colectiva del alumnado de %%ASIGNATURA%%. %%INSTITUCION%%.</p>
+          <button class="copy" type="button" data-copy="cite-obra">Copiar la cita</button>
+          <p class="mini">Cada momento tiene además su propia cita, con su autoría, al abrirlo.</p>
+        </div>
+        <dl class="ficha">
+          <div><dt>Institución</dt><dd><a href="%%INSTITUCION_URL%%">%%INSTITUCION%%</a></dd></div>
+          <div><dt>Titulación</dt><dd>%%TITULACION%%</dd></div>
+          <div><dt>Asignatura</dt><dd>%%ASIGNATURA%%</dd></div>
+          <div><dt>Curso</dt><dd>%%CURSO%%</dd></div>
+          <div><dt>Coordinación docente</dt><dd>%%COORDINACION%%</dd></div>
+          <div><dt>Autoría</dt><dd>%%AUTORIA_FICHA%%</dd></div>
+          <div><dt>Estructura de cada momento</dt><dd>Contexto previo, desarrollo histórico, consecuencias y transformaciones, clave interpretativa, imagen o documento comentado y referencias</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><b>%%TITULO%%.</b> Obra colectiva del alumnado de %%ASIGNATURA%%, %%TITULACION%%, <a href="%%INSTITUCION_URL%%">%%INSTITUCION%%</a>, curso %%CURSO%%. Coordinación docente: %%COORDINACION%%.</p>
+    <p>Los momentos se muestran tal como aparecen en la edición docente, sin reescribirlos. Las imágenes elegidas por el alumnado forman parte del material docente de trabajo.</p>
+  </footer>
+</div>
+
+<div class="sheet e1" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title" hidden>
+  <aside class="sh-aside">
+    <button class="sh-close" id="sh-close" type="button">Volver a la línea</button>
+    <p class="sh-era" id="sh-era"></p>
+    <p class="sh-num" id="sh-num"></p>
+    <h2 class="sh-title" id="sh-title"></h2>
+    <p class="sh-by" id="sh-by"></p>
+    <div class="sh-hilos" id="sh-hilos"></div>
+    <details class="sh-cite" id="sh-citebox"><summary>Cómo citar este momento</summary><p id="sh-cite"></p><button class="copy" type="button" data-copy="sh-cite">Copiar la cita</button></details>
+    <nav class="sh-nav" id="sh-nav" aria-label="Momento anterior y siguiente"></nav>
+  </aside>
+  <div class="sh-main">
+    <div class="sh-bar">
+      <a class="tb mob" id="tb-prev" aria-label="Momento anterior">‹</a>
+      <a class="tb mob" id="tb-next" aria-label="Momento siguiente">›</a>
+      <span class="info" id="tb-info"></span>
+      <button class="tb" id="tb-out" type="button" aria-label="Reducir">−</button>
+      <button class="tb" id="tb-in" type="button" aria-label="Ampliar">+</button>
+      <label class="tgl"><input type="checkbox" id="tb-full"> Páginas completas</label>
+    </div>
+    <div class="sh-doc" id="sh-doc"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+'use strict';
+const D = %%DATOS%%;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const root = document.documentElement;
+root.lang = 'es';
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const norm = s => s.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+const eraOf = n => Math.ceil(n / 10);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+/* Dirección que acompaña a las citas: la configurada o, en GitHub Pages, la de la propia página. */
+const BASE = D.o.u || (/\.github\.io$/.test(location.hostname) ? location.origin + location.pathname : '');
+if (BASE) $('#cite-obra').append(' ' + BASE);
+document.addEventListener('click', e => {
+  const b = e.target.closest('.copy');
+  if (!b) return;
+  const src = document.getElementById(b.dataset.copy), old = b.textContent;
+  const say = (t, ms) => { b.textContent = t; setTimeout(() => { b.textContent = old; }, ms); };
+  const pick = () => {                       /* sin permiso para copiar: se deja seleccionada */
+    const r = document.createRange(), s = getSelection();
+    r.selectNodeContents(src); s.removeAllRanges(); s.addRange(r);
+    say('Cita seleccionada', 2400);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(src.textContent.trim()).then(() => say('Cita copiada', 1800), pick);
+  else pick();
+});
+const PROPIA = 'Elaboración propia';                                /* momentos que desarrolló la edición docente */
+const has = n => n >= 1 && n <= 100 && D.m[n - 1][1] !== null;      /* ¿tiene aportación? */
+/* siguiente momento con aportación en un sentido; 0 si no hay */
+const step = (n, d) => { for (let k = n + d; k >= 1 && k <= 100; k += d) if (has(k)) return k; return 0; };
+
+const app = $('#app'), track = $('#track'), rail = $('#rail'), mx = $('#mx'), finfo = $('#finfo'), sheet = $('#sheet');
+const cards = new Map($$('.m', rail).map(li => [+li.dataset.n, li]));
+const cells = new Map($$('.cell', mx).map(a => [+a.dataset.n, a]));
+const eras = $$('.era', rail), rbs = $$('.rb'), win = $('#win');
+
+/* ───────── línea temporal ───────── */
+let curEra = 0, lefts = [];
+function setEra(e) {
+  if (e === curEra) return;
+  curEra = e;
+  root.style.setProperty('--era', `var(--e${e})`);
+  rbs.forEach((b, i) => b.setAttribute('aria-current', i + 1 === e ? 'true' : 'false'));
+}
+function measure() {
+  let up = 0, dn = 0;                      /* la línea se ajusta a la banderola más alta de cada lado */
+  cards.forEach(li => { const h = li.firstElementChild.offsetHeight; if (li.classList.contains('up')) up = Math.max(up, h); else dn = Math.max(dn, h); });
+  if (up && dn) { rail.style.setProperty('--up', up + 18 + 'px'); rail.style.setProperty('--dn', dn + 14 + 'px'); }
+  lefts = eras.map(s => s.offsetLeft);
+}
+function onScroll() {
+  const x = track.scrollLeft + track.clientWidth * .3;
+  let e = 1;
+  for (let i = 0; i < lefts.length; i++) if (lefts[i] <= x) e = i + 1;
+  if (sheet.hidden) setEra(e);
+  const total = track.scrollWidth, rw = win.parentNode.clientWidth;
+  win.style.width = Math.max(18, track.clientWidth / total * rw) + 'px';
+  win.style.transform = `translateX(${track.scrollLeft / total * rw}px)`;
+}
+let ticking = false;
+track.addEventListener('scroll', () => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => { ticking = false; onScroll(); });
+}, { passive: true });
+let wheelTo = null, wheelRaf = 0;
+const glide = left => { wheelTo = null; track.scrollTo({ left, behavior: calm ? 'auto' : 'smooth' }); };
+/* La rueda mueve la línea cuando está entera a la vista; en sus extremos, la página sigue bajando. */
+function wheelStep() {
+  if (wheelTo === null) { wheelRaf = 0; return; }
+  const cur = track.scrollLeft, d = wheelTo - cur;
+  if (Math.abs(d) < 1) { track.scrollLeft = wheelTo; wheelTo = null; wheelRaf = 0; return; }
+  track.scrollLeft = cur + d * .22;
+  wheelRaf = requestAnimationFrame(wheelStep);
+}
+track.addEventListener('wheel', e => {
+  if (e.ctrlKey || e.shiftKey || Math.abs(e.deltaX) >= Math.abs(e.deltaY)) return;
+  const r = track.getBoundingClientRect(), vis = Math.min(r.bottom, innerHeight) - Math.max(r.top, 0);
+  if (vis < Math.min(r.height, innerHeight) * .82) return;
+  const max = track.scrollWidth - track.clientWidth, cur = wheelTo === null ? track.scrollLeft : wheelTo;
+  const d = (e.deltaMode === 1 ? e.deltaY * 32 : e.deltaY) * 1.6;
+  if ((d > 0 && cur >= max - 1) || (d < 0 && cur <= 0)) return;
+  e.preventDefault();
+  if (calm) { track.scrollLeft = cur + d; return; }
+  wheelTo = Math.max(0, Math.min(max, cur + d));
+  if (!wheelRaf) wheelRaf = requestAnimationFrame(wheelStep);
+}, { passive: false });
+function centre(n, smooth = true) {
+  const li = cards.get(n);
+  if (!li) return;
+  const left = li.getBoundingClientRect().left - rail.getBoundingClientRect().left + li.offsetWidth / 2 - track.clientWidth / 2;
+  if (smooth) glide(left); else { wheelTo = null; track.scrollLeft = left; }
+}
+rbs.forEach((b, i) => b.addEventListener('click', () => glide(lefts[i] - 8)));
+$('#prev').addEventListener('click', () => glide(track.scrollLeft - track.clientWidth * .8));
+$('#next').addEventListener('click', () => glide(track.scrollLeft + track.clientWidth * .8));
+
+/* arrastrar con el ratón */
+{
+  let down = false, moved = false, x0 = 0, s0 = 0;
+  track.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    down = true; moved = false; x0 = e.clientX; s0 = track.scrollLeft; wheelTo = null;
+  });
+  window.addEventListener('pointermove', e => {
+    if (!down) return;
+    const dx = e.clientX - x0;
+    if (!moved && Math.abs(dx) > 5) { moved = true; track.classList.add('drag'); }
+    if (moved) track.scrollLeft = s0 - dx;
+  });
+  window.addEventListener('pointerup', () => {
+    if (!down) return;
+    down = false;
+    if (moved) setTimeout(() => track.classList.remove('drag'), 0);
+  });
+  track.addEventListener('dragstart', e => e.preventDefault());
+}
+
+/* ───────── foco: hilos y búsqueda ───────── */
+let focusList = [], focusAt = -1, thread = null, activeHilo = -1;
+function focusOn(list, html, withThread) {
+  const set = new Set(list);
+  focusList = list; focusAt = -1;
+  rail.classList.toggle('focus', list.length > 0);
+  mx.classList.toggle('focus', list.length > 0);
+  cards.forEach((li, n) => li.classList.toggle('on', set.has(n)));
+  cells.forEach((a, n) => a.classList.toggle('on', set.has(n)));
+  if (thread) { thread.remove(); thread = null; }
+  if (withThread && list.length > 1) drawThread();
+  finfo.innerHTML = html ? `<span>${html}</span>` : '';
+  if (list.length) {
+    const p = el('button', null, 'Anterior'), s = el('button', null, 'Siguiente');
+    p.type = s.type = 'button';
+    p.addEventListener('click', () => hop(-1));
+    s.addEventListener('click', () => hop(1));
+    finfo.append(p, s);
+  }
+}
+function drawThread() {
+  const r = rail.getBoundingClientRect();
+  const a = cards.get(focusList[0]).querySelector('.dot').getBoundingClientRect();
+  const b = cards.get(focusList[focusList.length - 1]).querySelector('.dot').getBoundingClientRect();
+  thread = el('span', 'thread');
+  thread.style.left = (a.left - r.left + a.width / 2) + 'px';
+  thread.style.width = (b.left - a.left) + 'px';
+  thread.style.top = (a.top - r.top + a.height / 2 + 7) + 'px';
+  rail.append(thread);
+}
+/* Lleva la línea a la vista si quien pulsa está más abajo o más arriba en la página. */
+function reveal() {
+  const r = track.getBoundingClientRect();
+  if (r.top >= 50 && r.bottom <= innerHeight) return;
+  scrollBy({ top: $('#linea').getBoundingClientRect().top - 66, behavior: calm ? 'auto' : 'smooth' });
+}
+function hop(d, show = true) {
+  if (!focusList.length) return;
+  if (show) reveal();
+  focusAt = focusAt < 0 ? (d > 0 ? 0 : focusList.length - 1) : (focusAt + d + focusList.length) % focusList.length;
+  const n = focusList[focusAt], li = cards.get(n);
+  centre(n);
+  li.classList.remove('pulse'); void li.offsetWidth; li.classList.add('pulse');
+}
+const chips = $$('.chip');
+const HINT = 'Las claves del último bloque atraviesan toda la historia. Elige una para ver por qué momentos pasa.';
+function clearFocus() {
+  activeHilo = -1;
+  chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+  focusOn([], HINT, false);
+}
+chips.forEach((c, i) => c.addEventListener('click', () => {
+  if (activeHilo === i) return clearFocus();
+  $('#q').value = '';
+  activeHilo = i;
+  chips.forEach((x, j) => x.setAttribute('aria-pressed', j === i ? 'true' : 'false'));
+  const [key, name, list] = D.hilos[i];
+  focusOn(list, `<b>${name}</b> pasa por ${list.length} momentos y termina en la clave ${key} del bloque X.`, true);
+  hop(1);
+}));
+const hay = D.m.map(([t, a, e], i) => norm(`${i + 1} ${t} ${a || ''} ${e ? PROPIA + ' edición docente' : ''}`));
+let qTimer = 0;
+$('#q').addEventListener('input', e => {
+  const raw = e.target.value.trim(), q = norm(raw);
+  clearTimeout(qTimer);
+  if (!q) return clearFocus();
+  activeHilo = -1;
+  chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+  const list = [];
+  hay.forEach((h, i) => { if (h.includes(q)) list.push(i + 1); });
+  const exact = /^\d+$/.test(q) && +q >= 1 && +q <= 100 ? +q : 0;
+  if (exact) { list.splice(list.indexOf(exact), 1); list.unshift(exact); }
+  const safe = raw.replace(/[<>&]/g, '');
+  focusOn(list, list.length ? `<b>${list.length}</b> ${list.length === 1 ? 'momento coincide' : 'momentos coinciden'} con «${safe}».` : `Ningún momento coincide con «${safe}».`, false);
+  if (list.length) qTimer = setTimeout(() => hop(1, false), 280);
+});
+$('#q').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); clearTimeout(qTimer); hop(1); } });
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && sheet.hidden && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) { e.preventDefault(); $('#q').focus(); }
+});
+
+/* matriz: leyenda de la casilla */
+const mxcap = $('#mxcap');
+function showCap(n) {
+  mxcap.textContent = '';
+  mxcap.className = 'mx-cap e' + eraOf(n);
+  mxcap.append(el('span', 'n', n), el('span', 't', D.m[n - 1][0]));
+  if (D.m[n - 1][1] || D.m[n - 1][2]) mxcap.append(el('span', 'a', D.m[n - 1][1] || PROPIA));
+}
+showCap(1);
+function cap(e) {
+  const a = e.target.closest('.cell');
+  if (!a) return;
+  const n = +a.dataset.n;
+  showCap(n);
+}
+mx.addEventListener('pointerover', cap);
+mx.addEventListener('focusin', cap);
+
+/* ───────── el fragmento original ───────── */
+/* Cada página del documento es una imagen (paginas/NNN.webp). D.f dice qué tramos de qué páginas
+   forman cada momento, en diezmilésimas de la altura de la página: la web solo recorta. */
+const src = p => `paginas/${typeof p === 'number' ? String(p).padStart(3, '0') : p}.webp`;   /* las aportaciones sueltas traen nombre propio */
+const HAVE = new Set(Object.values(D.f).flat().map(t => t[0]));
+const S = { key: null, zoom: 1, full: false, extra: [0, 0], pushed: false, origin: null };
+const host = $('#sh-doc'), info = $('#tb-info');
+function draw() {
+  const frag = D.f[S.key];
+  host.textContent = '';
+  info.textContent = '';
+  if (!frag || !frag.length) return;
+  let list = frag;
+  if (S.full) {
+    const lab = new Map(frag.map(t => [t[0], t[3]])), ps = [...lab.keys()];
+    for (let k = 0; k < S.extra[0]; k++) ps.unshift(ps[0] - 1);
+    for (let k = 0; k < S.extra[1]; k++) ps.push(ps[ps.length - 1] + 1);
+    list = ps.map(q => [q, 0, 10000, lab.get(q)]);
+  }
+  const first = list[0][0], last = list[list.length - 1][0], count = new Set(list.map(t => t[0])).size;
+  info.textContent = typeof first !== 'number' ? `Trabajo original, ${count} ${count === 1 ? 'página' : 'páginas'}`
+    : first === last ? `Página ${first}` : `Páginas ${first}–${last}`;
+  const pad = parseFloat(getComputedStyle(host).paddingLeft) * 2;
+  const base = Math.round(Math.max(240, Math.min(host.clientWidth - pad, 880)) * S.zoom), H = base * D.r;
+  const stack = el('div', S.full ? 'stack full' : 'stack');
+  stack.style.width = base + 'px';
+  let prev = 0;
+  for (const [q, a, b, lab] of list) {
+    const fig = el('figure', 'pg'), clip = el('div', 'clip'), img = new Image();
+    if (S.full || (prev && q !== prev)) { fig.classList.add('brk'); fig.append(el('figcaption', null, 'pág. ' + (lab || q))); }
+    clip.style.height = (b - a) / 10000 * H + 'px';
+    img.alt = (S.full ? 'Página ' : 'Fragmento de la página ') + (lab || q) + ' del documento original';
+    img.decoding = 'async';
+    img.style.cssText = `width:${base}px;height:${H}px;margin-top:${-a / 10000 * H}px`;
+    img.addEventListener('load', () => fig.classList.add('ready'), { once: true });
+    img.addEventListener('error', () => fig.classList.add('gone'), { once: true });
+    img.src = src(q);
+    if (img.complete && img.naturalWidth) fig.classList.add('ready');
+    clip.append(img);
+    fig.append(clip);
+    stack.append(fig);
+    prev = q;
+  }
+  if (S.full && HAVE.has(first - 1)) host.append(moreBtn('Añadir la página anterior', 0));
+  host.append(stack);
+  if (S.full && HAVE.has(last + 1)) host.append(moreBtn('Añadir la página siguiente', 1));
+  host.scrollTop = S.full && !S.extra[0] ? Math.max(0, frag[0][1] / 10000 * H - 8) : 0;   /* en páginas completas, empezar en el encabezado */
+}
+function moreBtn(label, side) {
+  const w = el('div', 'more'), b = el('button', 'tb txt', label);
+  b.type = 'button';
+  b.addEventListener('click', () => { S.extra[side]++; draw(); });
+  w.append(b);
+  return w;
+}
+$('#tb-full').addEventListener('change', e => { S.full = e.target.checked; S.extra = [0, 0]; draw(); });
+function zoom(f) { S.zoom = Math.min(2.2, Math.max(.6, +(S.zoom * f).toFixed(2))); draw(); }
+$('#tb-in').addEventListener('click', () => zoom(1.2));
+$('#tb-out').addEventListener('click', () => zoom(1 / 1.2));
+/* La primera página de un momento se pide en cuanto alguien se acerca a él: al abrirlo ya está. */
+const asked = new Set();
+function preload(key) {
+  const f = D.f[key];
+  if (!f || !f.length || asked.has(key)) return;
+  asked.add(key);
+  new Image().src = src(f[0][0]);
+}
+for (const ev of ['pointerover', 'focusin']) for (const zone of [rail, mx]) zone.addEventListener(ev, e => {
+  const a = e.target.closest('a[href^="#m"]');
+  if (a) preload(a.getAttribute('href').slice(1));
+}, { passive: true });
+let rsT = 0, lastW = innerWidth;
+addEventListener('resize', () => {
+  measure(); onScroll();
+  if (thread) { thread.remove(); thread = null; if (activeHilo >= 0) drawThread(); }
+  clearTimeout(rsT);
+  rsT = setTimeout(() => { if (Math.abs(innerWidth - lastW) > 40) { lastW = innerWidth; if (!sheet.hidden) draw(); } }, 220);
+});
+
+/* ───────── abrir y cerrar el pliego ───────── */
+const valid = h => (/^m\d{1,3}$/.test(h) && has(+h.slice(1))) || D.secs.some(s => s[0] === h);
+function parseHash() {
+  const h = location.hash.slice(1);
+  return valid(h) ? h : null;
+}
+function fill(key) {
+  S.key = key;
+  const nav = $('#sh-nav'), hil = $('#sh-hilos'), tp = $('#tb-prev'), tn = $('#tb-next');
+  nav.textContent = ''; hil.textContent = '';
+  let e = 10;
+  if (key[0] === 'm' && /^m\d+$/.test(key)) {
+    const n = +key.slice(1), b = D.eras[(e = eraOf(n)) - 1];
+    $('#sh-era').textContent = `Bloque ${b[0]}. ${b[1]}` + (b[3] ? `, ${b[3]}` : '');
+    $('#sh-num').textContent = n;
+    $('#sh-title').textContent = D.m[n - 1][0];
+    $('#sh-by').textContent = D.m[n - 1][1] ? 'Trabajo de ' + D.m[n - 1][1] : D.m[n - 1][2] ? PROPIA + ' de la edición docente' : '';
+    D.hilos.forEach(([, name, list]) => {
+      const open = list.filter(has), i = open.indexOf(n);
+      if (i < 0 || open.length < 2) return;
+      const nx = open[(i + 1) % open.length], a = el('a', null, `${nx}. ${D.m[nx - 1][0]}`), p = el('span');
+      a.href = '#m' + nx;
+      p.append(`Hilo «${name}». Sigue en `, a);
+      hil.append(p);
+    });
+    for (const [d, lab, btn] of [[-1, 'Anterior', tp], [1, 'Siguiente', tn]]) {
+      const k = step(n, d);
+      btn.hidden = !k;
+      if (!k) continue;
+      btn.href = '#m' + k;
+      const a = el('a');
+      a.href = '#m' + k;
+      a.append(el('small', null, lab), el('span', null, `${k}. ${D.m[k - 1][0]}`));
+      nav.append(a);
+    }
+    setEra(e);
+    centre(n, false);
+    preload('m' + step(n, 1));
+    const who = D.m[n - 1][1], cite = $('#sh-cite');
+    cite.textContent = '';
+    cite.append(who ? `${who} (${D.o.y}). «${D.m[n - 1][0]}». ` : `«${D.m[n - 1][0]}» (${D.o.y}). ` + (D.m[n - 1][2] ? PROPIA + ' de la edición docente. ' : ''), `En ${D.o.c} (coord.), `, el('i', null, D.o.t),
+      ` (momento ${n}). ${D.o.i}.` + (BASE ? ` ${BASE}#m${n}` : ''));
+    $('#sh-citebox').hidden = false;
+    document.title = `${n}. ${D.m[n - 1][0]} | 100 momentos de Historia de Canarias`;
+  } else {
+    const s = D.secs.find(x => x[0] === key);
+    $('#sh-era').textContent = 'El documento';
+    $('#sh-num').textContent = '§';
+    $('#sh-title').textContent = s[1];
+    $('#sh-by').textContent = 'Edición docente. ' + D.o.i;
+    $('#sh-citebox').hidden = true;
+    tp.hidden = tn.hidden = true;
+    document.title = `${s[1]} | 100 momentos de Historia de Canarias`;
+  }
+  sheet.className = sheet.className.replace(/\be\d+\b/, 'e' + e);
+  S.extra = [0, 0];
+  draw();
+}
+function show(key, origin) {
+  if (!key) { if (!sheet.hidden) hide(); return; }
+  if (!sheet.hidden) return fill(key);
+  S.origin = origin || document.activeElement;
+  const numEl = origin && (origin.querySelector('.num') || (origin.classList.contains('cell') ? origin : null));
+  const open = () => {
+    if (numEl) numEl.style.viewTransitionName = '';
+    sheet.hidden = false;
+    root.classList.add('sheet-open');
+    app.inert = true;
+    fill(key);
+    $('#sh-close').focus({ preventScroll: true });
+  };
+  if (document.startViewTransition && !calm) {
+    if (numEl) numEl.style.viewTransitionName = 'mnum';
+    document.startViewTransition(open);
+  } else {
+    open();
+    sheet.classList.remove('enter'); void sheet.offsetWidth; sheet.classList.add('enter');
+  }
+}
+function hide() {
+  const n = /^m\d+$/.test(S.key || '') ? +S.key.slice(1) : 0, li = cards.get(n), numEl = li && li.querySelector('.num');
+  const back = (li && li.querySelector('a')) || S.origin;
+  const close = () => {
+    sheet.hidden = true;
+    root.classList.remove('sheet-open');
+    app.inert = false;
+    host.textContent = '';
+    if (numEl) numEl.style.viewTransitionName = 'mnum';
+    document.title = '100 momentos de Historia de Canarias';
+    onScroll();
+  };
+  if (document.startViewTransition && !calm) {
+    document.startViewTransition(close).finished.finally(() => { if (numEl) numEl.style.viewTransitionName = ''; });
+  } else { close(); if (numEl) numEl.style.viewTransitionName = ''; }
+  S.key = null;
+  if (back && back.focus) back.focus({ preventScroll: true });
+}
+function go(key, origin) {
+  const wasOpen = !sheet.hidden;
+  try {
+    if (wasOpen) history.replaceState({ k: key }, '', '#' + key);
+    else { history.pushState({ k: key }, '', '#' + key); S.pushed = true; }
+  } catch (e) {}
+  show(key, origin);
+}
+function leave() {
+  if (S.pushed) { S.pushed = false; history.back(); return; }
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  hide();
+}
+function sync() {
+  const k = parseHash();
+  if (k === S.key || (!k && sheet.hidden)) return;
+  if (!k) S.pushed = false;
+  show(k);
+}
+addEventListener('popstate', sync);
+addEventListener('hashchange', sync);
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+  const h = a.getAttribute('href').slice(1);
+  if (!valid(h)) return;
+  e.preventDefault();
+  go(h, a);
+});
+$('#sh-close').addEventListener('click', leave);
+document.addEventListener('keydown', e => {
+  if (sheet.hidden) return;
+  if (e.key === 'Escape') { e.preventDefault(); leave(); }
+  else if ((e.key === 'ArrowLeft' || e.key === 'ArrowRight') && /^m\d+$/.test(S.key) && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) {
+    const k = step(+S.key.slice(1), e.key === 'ArrowLeft' ? -1 : 1);
+    if (k) { e.preventDefault(); go('m' + k); }
+  }
+});
+
+measure(); onScroll(); setEra(1); clearFocus();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); onScroll(); });
+const first = parseHash();
+if (first) show(first);
+})();
+</script>
